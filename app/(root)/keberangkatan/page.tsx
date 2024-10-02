@@ -24,6 +24,7 @@ const DepartureSchedulePage = () => {
       </div>
       {flights.map((flight, index) => (
         <TicketCard
+          isPrimary={true}
           key={index}
           classSeat={"Ekonomi"}
           airline={flight.airline.name}

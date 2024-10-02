@@ -161,7 +161,7 @@
   }
 
   .body-6 {
-    @apply body-[6px] leading-3;
+    @apply text-[6px] leading-3;
   }
 
   .caption {

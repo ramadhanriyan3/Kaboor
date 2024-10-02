@@ -25,6 +25,7 @@ const DepartureSchedulePage = () => {
             Keberangkatan
           </div>
           <TicketCard
+            isPrimary={true}
             classSeat={"Ekonomi"}
             airline={flights[0].airline.name}
             price={flights[0].price.adult}
@@ -57,6 +58,7 @@ const DepartureSchedulePage = () => {
             departureTime={flight.departureTime}
             arrivalTime={flight.arrivalTime}
             imageUrl={flight.airline.imageUrl}
+            isPrimary={true}
           />
         ))}
       </div>

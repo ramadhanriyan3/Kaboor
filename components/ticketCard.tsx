@@ -1,14 +1,14 @@
 import { BriefcaseBusiness, ShieldCheck } from "lucide-react";
 import { IoAirplaneOutline } from "react-icons/io5";
 import IconBadge from "./iconBade";
-
-import { flights } from "@/lib/dummyData/fligntsData";
 import Image from "next/image";
 import {
   convertToWIB,
   formatPrice,
   timeDifference,
 } from "@/lib/formatedFunction";
+
+import { cn } from "@/lib/utils";
 
 interface TicketCardProps {
   price: number;
@@ -21,6 +21,7 @@ interface TicketCardProps {
   imageUrl: string;
   departureTime: Date | string;
   arrivalTime: Date | string;
+  isPrimary: boolean;
 }
 
 const TicketCard = ({
@@ -34,24 +35,57 @@ const TicketCard = ({
   departureTime,
   airline,
   imageUrl,
+  isPrimary,
 }: TicketCardProps) => {
   return (
-    <div className="flex  gap-x-2 md:gap-x-4 justify-between items-center xl:flex-row flex-col gap-y-2 border p-2 md-px-4 bg-white drop-shadow-sm">
-      <div className="flex w-full xl:max-w-60 gap-x-4 items-center xl:justify-start justify-between">
+    <div
+      className={cn(
+        `flex  gap-x-2 justify-between items-center  flex-col gap-y-2 border p-2 bg-white drop-shadow-sm`,
+        isPrimary && "md:gap-x-4 xl:flex-row"
+      )}
+    >
+      <div
+        className={cn(
+          "flex w-full  gap-x-4 items-center  justify-between",
+          isPrimary && "xl:max-w-60 xl:justify-start"
+        )}
+      >
         <Image src={imageUrl} alt="icon" width={80} height={60} />
         <div>
-          <p className="select-none heading-6 lg:heading-5   ">{airline}</p>
-          <p className="select-none body-3 md:body-2 lg:body-1 text-neutral-400 lg:text-start text-end">
+          <p
+            className={cn(
+              "select-none heading-6 ",
+              isPrimary && "lg:heading-5"
+            )}
+          >
+            {airline}
+          </p>
+          <p
+            className={cn(
+              "select-none body-3  text-neutral-400  text-end",
+              isPrimary && "md:body-2 lg:body-1 lg:text-start"
+            )}
+          >
             {classSeat}
           </p>
         </div>
       </div>
       <div className="flex  items-center gap-x-2 justify-between max-w-md w-full">
         <div className="flex flex-col w-20">
-          <p className=" lg:heading-5 body-3 select-none text-neutral-400">
+          <p
+            className={cn(
+              "body-3 select-none text-neutral-400",
+              isPrimary && "lg:heading-5"
+            )}
+          >
             {origin + `(${originCode})`}
           </p>
-          <p className="select-none text-center body-3 lg:body-1">
+          <p
+            className={cn(
+              "select-none text-center body-3 ",
+              isPrimary && "lg:body-1"
+            )}
+          >
             {convertToWIB(departureTime)}
           </p>
         </div>
@@ -65,20 +99,43 @@ const TicketCard = ({
           </p>
         </div>
         <div className="flex flex-col w-20 ">
-          <p className=" lg:heading-5 body-3 select-none text-neutral-400">
+          <p
+            className={cn(
+              "body-3 select-none text-neutral-400",
+              isPrimary && "lg:heading-5 "
+            )}
+          >
             {destination + `(${destinationCode})`}
           </p>
-          <p className="select-none text-center body-3 lg:body-1">
+          <p
+            className={cn(
+              "select-none text-center body-3",
+              isPrimary && "lg:body-1"
+            )}
+          >
             {convertToWIB(arrivalTime)}
           </p>
         </div>
       </div>
-      <div className="flex gap-x-5 w-full  items-center justify-between xl:max-w-60">
+      <div
+        className={cn(
+          "flex gap-x-5 w-full items-center justify-between",
+          isPrimary && "xl:max-w-60"
+        )}
+      >
         <div className="flex gap-x-2 w-fit">
-          <IconBadge size={"md"} icon={BriefcaseBusiness} />
-          <IconBadge size={"md"} icon={ShieldCheck} />
+          <IconBadge
+            size={isPrimary ? "md" : "default"}
+            icon={BriefcaseBusiness}
+          />
+          <IconBadge size={isPrimary ? "md" : "default"} icon={ShieldCheck} />
         </div>
-        <p className=" select-none lg:heading-5 heading-6  gradient-text">
+        <p
+          className={cn(
+            "select-none heading-6 gradient-text",
+            isPrimary && "lg:heading-5"
+          )}
+        >
           {formatPrice(price)}
         </p>
       </div>
