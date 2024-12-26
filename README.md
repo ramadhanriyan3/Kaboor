@@ -38,4 +38,4 @@ Kaboor is a user-friendly flight ticket booking application that simplifies the 
 - Dynamic seat selection during booking.
 
 ## Status
-This project is currently under development. Contributions are welcome!
+This project is currently under development.
