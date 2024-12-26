@@ -10,7 +10,6 @@ Kaboor is a user-friendly flight ticket booking application that simplifies the 
 
 ## Technologies Used
 - **Frontend**: Next.js, TailwindCSS
-- **Backend**: (e.g., Express.js, Node.js)
 - **State Management**: Redux Toolkit
 - **Others**: Query-string for URL management
 
